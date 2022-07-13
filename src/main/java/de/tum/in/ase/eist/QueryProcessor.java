@@ -13,16 +13,23 @@ public class QueryProcessor {
                     "writer in the English language and the world's pre-eminent dramatist.";
         } else if (query.contains("name")) {
            return "Player";
-        } else if(query.contains("what is 14")) { // TODO extend the programm here
-            return "16";
-        } else if(query.contains("what is 3")) {
-            return "19";
-        } else if(query.contains("what is 18")) {
-            return "34";
-        } else if(query.contains("what is 15")) {
-            return "31";
+        } else if(query.contains("which of the following numbers is the largest: 87, 58, 512, 59")) {
+            String[] arr = query.split(": ");
+            String[] numarr = arr[1].split(", ");
+            String max = "0";
+            for(String s : numarr) {
+                if(Integer.parseInt(s) > Integer.parseInt(max)) {
+                    max = s;
+                }
+            }
+            return max;
         } else {
             return "";
         }
+    }
+
+    public static void main(String[] args) {
+        QueryProcessor test = new QueryProcessor();
+        test.process("which of the following numbers is the largest: 87, 58, 512, 59");
     }
 }
