@@ -32,6 +32,23 @@ public class QueryProcessor {
             int result = Integer.parseInt(cleanA) * Integer.parseInt(cleanB);
             System.out.println(result);
             return result + "";
+        } else if(query.contains("which of the following numbers are primes:")) {
+            String[] arr = query.split(": ");
+            String[] numarr = arr[1].split(", ");
+            boolean flag = false;
+            for(String s : numarr) {
+                for(int i = 2; i <= Integer.parseInt(s) / 2; i++) {
+                    if(Integer.parseInt(s) == 0) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag) {
+                    return s;
+                }
+            }
+
+            return "-1";
         }else {
             return "";
         }
@@ -41,5 +58,6 @@ public class QueryProcessor {
 //        QueryProcessor test = new QueryProcessor();
 //        test.process("which of the following numbers is the largest: 87, 58, 512, 59");
 //        test.process("3 multiplied by 5");
+//        test.process("\"which of the following numbers are primes: 333, 31, 39");
 //    }
 }
