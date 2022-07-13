@@ -23,13 +23,23 @@ public class QueryProcessor {
                 }
             }
             return max;
-        } else {
+        } else if(query.contains("multiplied")) {
+            String[] arr = query.split("multiplied");
+            String a = arr[0];
+            String b = arr[1];
+            String cleanA = a.replaceAll("\\D+","");
+            String cleanB = b.replaceAll("\\D+","");
+            int result = Integer.parseInt(cleanA) * Integer.parseInt(cleanB);
+            System.out.println(result);
+            return result + "";
+        }else {
             return "";
         }
     }
 
-    public static void main(String[] args) {
-        QueryProcessor test = new QueryProcessor();
-        test.process("which of the following numbers is the largest: 87, 58, 512, 59");
-    }
+//    public static void main(String[] args) {
+//        QueryProcessor test = new QueryProcessor();
+//        test.process("which of the following numbers is the largest: 87, 58, 512, 59");
+//        test.process("3 multiplied by 5");
+//    }
 }
